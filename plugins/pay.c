@@ -1834,7 +1834,8 @@ static void init(struct plugin *p,
 	maxdelay_default = atoi(field);
 }
 
-struct payment_modifier *paymod_mods[3] = {
+struct payment_modifier *paymod_mods[4] = {
+	&routehints_pay_mod,
 	&local_channel_hints_pay_mod,
 	&retry_pay_mod,
 	NULL,
