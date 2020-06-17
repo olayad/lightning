@@ -28,6 +28,8 @@ struct keysend_data {
 	struct preimage preimage;
 };
 
+REGISTER_PAYMENT_MODIFIER_HEADER(keysend, struct keysend_data);
+
 static struct keysend_data *keysend_init(struct payment *p)
 {
 	struct keysend_data *d;
@@ -124,9 +126,7 @@ static struct command_result *json_keysend(struct command *cmd, const char *buf,
 #if DEVELOPER
 	bool *use_shadow;
 #endif
-	struct keysend_data *keysend;
 	p = payment_new(NULL, cmd, NULL /* No parent */, pay_mods);
-	keysend = payment_mod_keysend_get_data(p);
 	if (!param(cmd, buf, params,
 		   p_req("destination", param_node_id, &destination),
 		   p_req("msatoshi", param_msat, &msat),
