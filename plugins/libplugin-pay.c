@@ -275,6 +275,11 @@ payment_waitsendpay_finished(struct command *cmd, const char *buffer,
 {
 	p->result = tal_sendpay_result_from_json(p, buffer, toks);
 
+	if (p->result == NULL)
+		plugin_err(
+		    p->plugin, "Unable to parse `waitsendpay` result: %.*s",
+		    json_tok_full_len(toks), json_tok_full(buffer, toks));
+
 	if (p->result->state == PAYMENT_COMPLETE)
 		p->step = PAYMENT_STEP_SUCCESS;
 	else
