@@ -617,7 +617,7 @@ static void payment_child_finished(struct payment *p,
  * leafs in the subtree rooted in the payment are all in a final state. It is
  * called only once, and it is guaranteed to be called in post-order
  * traversal, i.e., all children are finished before the parent is called. */
-static struct command_result *payment_finished(struct payment *p)
+static void payment_finished(struct payment *p)
 {
 	struct payment_tree_result result = payment_collect_result(p);
 	struct json_stream *ret;
