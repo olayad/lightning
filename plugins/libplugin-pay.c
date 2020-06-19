@@ -603,14 +603,14 @@ static bool payment_is_success(struct payment *p)
 
 /* Function to bubble up completions to the root, which actually holds on to
  * the command that initiated the flow. */
-static struct command_result *payment_child_finished(struct payment *p,
+static void payment_child_finished(struct payment *p,
 						     struct payment *child)
 {
 	if (!payment_is_finished(p))
-		return command_still_pending(NULL);
+		return;
 
 	/* Should we continue bubbling up? */
-	return payment_finished(p);
+	payment_finished(p);
 }
 
 /* This function is called whenever a payment ends up in a final state, or all
