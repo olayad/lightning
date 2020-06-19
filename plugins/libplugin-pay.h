@@ -138,7 +138,7 @@ void *payment_mod_get_data(const struct payment *payment,
 	UNUSED static inline data_type *payment_mod_##name##_get_data(         \
 	    const struct payment *p)                                           \
 	{                                                                      \
-		return (data_type *)payment_mod_get_data(p, &name##_pay_mod);  \
+		return payment_mod_get_data(p, &name##_pay_mod);               \
 	}
 
 struct dummy_data {
