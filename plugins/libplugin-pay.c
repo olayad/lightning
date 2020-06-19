@@ -71,10 +71,10 @@ static struct command_result *payment_finished(struct payment *p);
  * child-spawning state and all of its children are in a final state. */
 static bool payment_is_finished(struct payment *p)
 {
-	bool running_children = false;
 	if (p->step == PAYMENT_STEP_FAILED || p->step == PAYMENT_STEP_SUCCESS)
 		return true;
 	else if (p->step == PAYMENT_STEP_SPLIT || p->step == PAYMENT_STEP_RETRY) {
+		bool running_children = false;
 		for (size_t i = 0; i < tal_count(p->children); i++)
 			running_children |= !payment_is_finished(p->children[i]);
 		return !running_children;
