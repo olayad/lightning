@@ -145,7 +145,7 @@ void payment_continue(struct payment *p)
 void *payment_mod_get_data(const struct payment *p,
 			   const struct payment_modifier *mod)
 {
-	for (int i = 0; p->modifiers[i] != NULL; i++)
+	for (size_t i = 0; p->modifiers[i] != NULL; i++)
 		if (p->modifiers[i] == mod)
 			return p->modifier_data[i];
 
