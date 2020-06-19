@@ -177,7 +177,7 @@ static void payment_compute_onion_payloads(struct payment *p)
 	cr->hops = tal_arr(cr, struct createonion_hop, tal_count(p->route));
 
 	/* Non-final hops */
-	for (int i = 0; i < hopcount - 1; i++) {
+	for (size_t i = 0; i < hopcount - 1; i++) {
 		/* The message is destined for hop i, but contains fields for
 		 * i+1 */
 		cur = &cr->hops[i];
