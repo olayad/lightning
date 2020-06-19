@@ -258,7 +258,7 @@ static void payment_sendonion(struct payment *p)
 				    payment_rpc_failure, p);
 
 	json_array_start(req->js, "hops");
-	for (int i = 0; i < tal_count(p->createonion_request->hops); i++) {
+	for (size_t i = 0; i < tal_count(p->createonion_request->hops); i++) {
 		json_object_start(req->js, NULL);
 		struct createonion_hop *hop = &p->createonion_request->hops[i];
 		json_add_node_id(req->js, "pubkey", &hop->pubkey);
