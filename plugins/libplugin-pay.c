@@ -664,13 +664,17 @@ static void payment_finished(struct payment *p)
 			/* Unset the pointer to the cmd so we don't attempt to
 			 * return a response twice. */
 			p->cmd = NULL;
-			return command_finished(cmd, ret);
+			if (command_finished(cmd, ret)) {/* Ignore result. */}
+			return;
 		} else {
-			return command_fail(p->cmd, JSONRPC2_INVALID_REQUEST,
-					    "Not functional yet");
+			if (command_fail(p->cmd, JSONRPC2_INVALID_REQUEST,
+					 "Not functional yet")) {/* Ignore result. */}
+
+			return;
 		}
 	} else {
-		return payment_child_finished(p->parent, p);
+		payment_child_finished(p->parent, p);
+		return;
 	}
 }
 
