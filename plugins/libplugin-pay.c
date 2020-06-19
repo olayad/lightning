@@ -633,7 +633,7 @@ static void payment_finished(struct payment *p)
 	if (p->parent == NULL && cmd == NULL) {
 		/* This is the tree root, but we already reported success or
 		 * failure, so noop. */
-		return command_still_pending(NULL);
+		return;
 
 	}  else if (p->parent == NULL) {
 		if (payment_is_success(p)) {
