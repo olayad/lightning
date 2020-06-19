@@ -566,7 +566,7 @@ static void payment_sendonion(struct payment *p)
 }
 
 /* Mutual recursion. */
-static struct command_result *payment_finished(struct payment *p);
+static void payment_finished(struct payment *p);
 
 /* A payment is finished if a) it is in a final state, of b) it's in a
  * child-spawning state and all of its children are in a final state. */
