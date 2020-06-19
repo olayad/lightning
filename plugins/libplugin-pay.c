@@ -74,7 +74,7 @@ static bool payment_is_finished(struct payment *p)
 	bool running_children = false;
 	if (p->step == PAYMENT_STEP_FAILED || p->step == PAYMENT_STEP_SUCCESS)
 		return true;
-	else if(p->step == PAYMENT_STEP_SPLIT || p->step == PAYMENT_STEP_RETRY) {
+	else if (p->step == PAYMENT_STEP_SPLIT || p->step == PAYMENT_STEP_RETRY) {
 		for (size_t i = 0; i < tal_count(p->children); i++)
 			running_children |= !payment_is_finished(p->children[i]);
 		return !running_children;
