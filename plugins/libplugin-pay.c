@@ -239,7 +239,6 @@ static struct payment_result *tal_sendpay_result_from_json(const tal_t *ctx,
 	    hashtok == NULL || hashtok->type != JSMN_STRING ||
 	    senttok == NULL || senttok->type != JSMN_STRING ||
 	    statustok == NULL || statustok->type != JSMN_STRING) {
-		fprintf(stderr, "XXX missing field\n");
 		return NULL;
 	}
 
