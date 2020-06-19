@@ -25,7 +25,7 @@ struct payment *payment_new(tal_t *ctx, struct command *cmd,
 	 * can also just `memcpy` the parent if this outside access is not
 	 * required. */
 	p->modifier_data = tal_arr(p, void *, 0);
-	for (int i=0; mods[i] != NULL; i++) {
+	for (size_t i=0; mods[i] != NULL; i++) {
 		if (mods[i]->data_init != NULL)
 			tal_arr_expand(&p->modifier_data,
 				       mods[i]->data_init(p));
